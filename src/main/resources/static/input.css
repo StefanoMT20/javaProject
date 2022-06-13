@@ -1,0 +1,26 @@
+.input{
+    background-color: transparent;
+    border: 1px solid #595d68;
+    padding: 0.8rem 2.5rem;
+    border-radius: 3px;
+}
+
+.input-user{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-user img{
+    position: absolute;
+    padding: 1rem;
+    
+}
+.input-password{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-password img{
+    position: absolute;
+    padding: 1rem;
+}
