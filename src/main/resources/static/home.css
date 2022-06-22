@@ -11,15 +11,17 @@ body {
 
 a {
     text-decoration: none;
+    color: white;
 }
 
 li {
     list-style: none;
 }
 
+
 h1,
 h2 {
-    color: #444;
+    color: black;
 }
 
 h3 {
@@ -27,17 +29,17 @@ h3 {
 }
 
 .btn {
-    background: #f05462;
+    background: #e7002e;
     color: white;
     padding: 5px 10px;
     text-align: center;
 }
 
 .btn:hover {
-    color: #f05462;
+    color: #e7002e;
     background: white;
     padding: 3px 8px;
-    border: 2px solid #f05462;
+    border: 2px solid #e7002e;
 }
 
 .title {
@@ -60,7 +62,7 @@ td {
 
 .side-menu {
     position: fixed;
-    background: #f05462;
+    background: #e7002e;
     width: 20vw;
     min-height: 100vh;
     display: flex;
