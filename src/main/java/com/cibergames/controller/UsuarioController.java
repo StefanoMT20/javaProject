@@ -39,7 +39,7 @@ public class UsuarioController {
 			return "Login";
 		}
 		else {
-			return "home";
+			return "Home";
 		}
 		
 	}
