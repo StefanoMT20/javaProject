@@ -1,10 +1,10 @@
-package org.VirtualGames;
+package com.cibergames;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProyectoDawiVirtualGamesApplicationTests {
+class CibergamesDawiApplicationTests {
 
 	@Test
 	void contextLoads() {

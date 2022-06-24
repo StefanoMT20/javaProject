@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+    <div class="main">
+    	<form action="/regUsuario/grabar" th:object="${usuario}" method="post">
+        <div class="registro">
+            <h2>Registrarse</h2>
+            <input placeholder="Nombre"  type="text" class="input" th:field="*{nombre}">
+            <input placeholder="Apellido" type="text" class="input" th:field="*{apellido}">
+            <input placeholder="email" type="email" class="input" th:field="*{correo}">
+            <input placeholder="Contraseña" type="password" class="input" th:field="*{clave}">
+            <input placeholder="DNI" type="text" class="input" th:field="*{dni}">
+            <select class="input" th:field="*{codigoTipoUsuario}">
+				<option value="-1">Seleccione</option>
+				<option 
+				th:each="tipo: ${listadoTipoUsuarios}" 
+				th:value="${tipo.codigo_tipo_usu}" 
+				th:text="${tipo.nombre_tipo_usu}">
+				</option>
+			</select>
+            <button type="submit" class="btn">Registrar</button>
+            <a href="/login/cargar" class="btn">Volver al login</a>
+        </div>
+		</form>
+		
+	<br>
+	<div th:if="${mensajeSucess} != null" class="alert alert-success" role="alert" th:text="${mensajeSucess}"></div>
+	<div th:if="${mensajeError} != null" class="alert alert-danger" role="alert" th:text="${mensajeError}"></div>
+	
+    </div>
+</body>
+</html>
