@@ -162,7 +162,7 @@
           </div>
         <!-- Modal ADD -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-xl">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Agregar</h5>
@@ -175,8 +175,8 @@
                   </div>
                   <div class="form">
                     <form action="" th:object="${videojuego}" method="post">
-                    <div class="row g-3">
-                      <div class="col">
+                    <div class="row">
+                      <div class="col-md-6">
                         <div class="mb-3">
                           <label for="exampleInputEmail1" class="form-label">Nombre</label>
                           <input type="email" class="form-control" th:field="*{nombre_juego}"
@@ -184,14 +184,14 @@
                         </div>
                         
                       </div>
-                      <div class="col">
+                      <div class="col-md-6">
                         <div class="mb-3">
                           <label for="exampleInputPassword1" class="form-label">Descripcion</label>
                           <input type="password" class="form-control" th:field="*{descripcion_juego}"
                             id="exampleInputPassword1">
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-md-6">
                         <div class="mb-3">
                           <label for="select-category" class="form-label">Selecciona Categoria</label>
                           <select id="select-category"class="input" th:field="*{codigo_categoria}">
@@ -202,18 +202,18 @@
                           </select>
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-md-6">
                         <div class="mb-3">
-                          <label for="select-empresa" class="form-label">Selecciona Empresa</label>
+                          <label for="select-empresa" class="form-label">Selecciona la Empresa   </label>
                           <select id="select-empresa"class="input" th:field="*{codigo_empresa}">
                             <option value="-1">Empresa1</option>
-                            <option th:each="cat: ${listaEmpresa}"
+                            <option th:each="cat: ${listaCategoria}"
                               th:value="${cat.codigo_empresa}"
                               th:text="${cat.nombre_empresa}"></option>
                           </select>
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-md-6">
                         <div class="mb-3">
                           <label for="select-tipoJuego" class="form-label">Selecciona Categoria</label>
                           <select id="select-tipoJuego"class="input" th:field="*{codigo_tipoJuego}">
@@ -224,21 +224,21 @@
                           </select>
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-md-6">
                         <div class="mb-3">
                           <label for="fecha" class="form-label">Fecha de Lanzamiento</label>
                           <input type="date" class="form-control" 
                             id="date" >
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-md-6">
                         <div class="mb-3">
                           <label for="precio" class="form-label">Precio</label>
                           <input type="text" class="form-control" 
                             id="precio" >
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-md-6">
                         <div class="mb-3">
                           <label for="Image" class="form-label">Inserta la imagen del juego</label>
                           <input class="form-control" type="file" id="formFile" >
