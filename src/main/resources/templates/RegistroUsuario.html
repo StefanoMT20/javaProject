@@ -17,16 +17,9 @@
             <input placeholder="email" type="email" class="input" th:field="*{correo}">
             <input placeholder="Contraseña" type="password" class="input" th:field="*{clave}">
             <input placeholder="DNI" type="text" class="input" th:field="*{dni}">
-            <select class="input" th:field="*{codigoTipoUsuario}">
-				<option value="-1">Seleccione</option>
-				<option 
-				th:each="tipo: ${listadoTipoUsuarios}" 
-				th:value="${tipo.codigo_tipo_usu}" 
-				th:text="${tipo.nombre_tipo_usu}">
-				</option>
-			</select>
+
             <button type="submit" class="btn">Registrar</button>
-            <a href="/login/cargar" class="btn">Volver al login</a>
+            <a href="/" class="btn">Volver al login</a>
         </div>
 		</form>
 		

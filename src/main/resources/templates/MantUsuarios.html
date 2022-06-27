@@ -49,7 +49,7 @@
           <ul class="navbar-nav">
 
             <li>
-             <a href="/" class="nav-link px-3 active">Cerrar Sesión</a>
+              <a href="/" class="nav-link px-3 active">Cerrar Sesión</a>
             </li>
           </ul>
         </div>
@@ -106,85 +106,44 @@
         </div>
 
                 <div class="form">
-                  <form action="/juegos/grabar" th:object="${videojuego}" method="post" enctype="multipart/form-data">
+                  <form action="/usuarios/grabarEdit" th:object="${usuario}" method="post">
                   <div class="row">
-                  <input type="hidden" name="ruta_img_juego" id="" th:field="*{ruta_img_juego}">
-                        <input type="hidden" class="form-control readonly" id="" th:field="*{codigo_juego}">
-                    <div class="img me-5">
-                  		<img th:src="@{'/images/juegos/' + ${ruta_img_juego}}" alt="">
-                	</div>
-                  <input type="hidden" name="ruta_img_juego" th:field="*{ruta_img_juego}">
-                        <input type="hidden" class="form-control readonly" id="" th:field="*{codigo_juego}">
+                  
+                  <!-- Codigo usuario -->
+                        <input type="hidden" class="form-control readonly" id="" th:field="*{codigo}">
 
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="" th:field="*{nombre_juego}">
+                        <input type="text" class="form-control" id="" th:field="*{nombre}">
                       </div>
                     </div>
                     <div class="col-md-6">
-                    	<div class="mb-3">
-                    		<label for="select-category" class="form-label">Selecciona Categoria</label>
-	                       	<select class="input" th:field="*{codigo_categoria}">
-							<option value="-1">Seleccione</option>
-							<option 
-								th:each="cat: ${listaCategoria}" 
-								th:value="${cat.codigo_categoria}" 
-								th:text="${cat.nombre_categoria}">
-							</option>
-							</select>
-	                    </div>
-	                </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                          	<label for="select-empresa" class="form-label">Selecciona la Empresa   </label>
-                          	<select class="input" th:field="*{codigo_empresa}">
-							<option value="-1">Seleccione</option>
-							<option 
-								th:each="emp: ${listaEmpresa}" 
-								th:value="${emp.codigo_empresa}" 
-								th:text="${emp.nombre_empresa}">
-							</option>
-							</select>
-                       	</div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="" th:field="*{apellido}">
+                      </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="mb-3">
-                          	<label for="select-tipoJuego" class="form-label">Selecciona Categoria</label>
-                          	<select class="input" th:field="*{codigo_tipo_juego}">
-							<option value="-1">Seleccione</option>
-							<option 
-								th:each="tipo: ${listaTipoJuego}" 
-								th:value="${tipo.codigo_tipo_juego}" 
-								th:text="${tipo.nombre_tipo_juego}">
-							</option>
-							</select>
-                        </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Correo</label>
+                        <input type="text" class="form-control" id="" th:field="*{correo}">
+                      </div>
                     </div>
                     <div class="col-md-6">
-                 		<div class="mb-3">
-                   			<label for="fecha" class="form-label">Fecha de Lanzamiento</label>
-                   			<input type="date" class="form-control" id="" th:field="*{fecha_lanzamiento}" >
-                 		</div>
-               		</div>
-               		<div class="col-md-6">
-                 		<div class="mb-3">
-                   			<label for="precio" class="form-label">Precio</label>
-                   			<input type="text" class="form-control" id=""  th:field="*{precio_juego}">
-                 		</div>
-               		</div>
-               		<div class="col-md-6">
-                 		<div class="mb-3">
-                   			<label for="Image" class="form-label">Inserta la imagen del juego</label>
-                   			<input class="form-control" type="file" name="file" id="" th:value="${ruta_img_juego}">
-                 		</div>
-               		</div>
-               		<div class="col-md-12">
-                 		<div class="mb-3">
-                   			<label for="descripcion" class="form-label">Descripcion</label>
-                   			<textarea id="descripcion" name="w3review" rows="4" cols="50" th:field="*{descripcion_juego}"></textarea>
-                		 </div>
-               		</div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Contraseña</label>
+                        <input type="text" class="form-control" id="" th:field="*{clave}">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">DNI</label>
+                        <input type="text" class="form-control" id="" th:field="*{dni}">
+                      </div>
+                    </div>
+                    
+
                   </div>
                      
                     

@@ -103,28 +103,7 @@ public class VideoJuegoController {
 
 		return "redirect:/juegos/cargar";
 	}
-	
-	@GetMapping("/juegos/mantenimiento")
-	public String cargarMantenimiento(Model model) {
-		
-		//Objeto de tipo videojuego
-		model.addAttribute("videojuego", new VideoJuego());
-		
-		//Lista de videojuegos
-		model.addAttribute("listaVideoJuegos", repoVideoJuego.findAll());
-		
-		//Combo categoria
-		model.addAttribute("listaCategoria", repoCategoria.findAll());
-		
-		// Combo empresa
-		model.addAttribute("listaEmpresa", repoEmpresa.findAll());
-		
-		// Combo tipo juego
-		model.addAttribute("listaTipoJuego", repoTipoJuego.findAll());
 
-		return "MantVideoJuegos";
-	}
-	
 	@PostMapping("/juegos/editar") //El modelAttribute es para capturar un atrbiuto //El model es para enviar un atributo
 	public String buscarEditarProductoPag(@ModelAttribute VideoJuego videojuego, Model model) {//Solo capturamos el id
 		System.out.println(videojuego);
@@ -147,5 +126,25 @@ public class VideoJuegoController {
 				
 		
 		return "MantVideoJuegos";
+	}
+	
+	@PostMapping("/juegos/eliminar")
+	public String eliminarJuego(@ModelAttribute VideoJuego videojuego, Model model) {
+		
+		repoVideoJuego.deleteById(videojuego.getCodigo_juego());
+		
+		//Lista de videojuegos
+		model.addAttribute("listaVideoJuegos", repoVideoJuego.findAll());
+		
+		//Combo categoria
+		model.addAttribute("listaCategoria", repoCategoria.findAll());
+		
+		// Combo empresa
+		model.addAttribute("listaEmpresa", repoEmpresa.findAll());
+		
+		// Combo tipo juego
+		model.addAttribute("listaTipoJuego", repoTipoJuego.findAll());
+		
+		return "redirect:/juegos/cargar";
 	}
 }

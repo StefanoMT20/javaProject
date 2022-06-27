@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cibergames.model.Usuario;
-import com.cibergames.repositorio.ITipoUsuarioRepository;
 import com.cibergames.repositorio.IUsuarioRepository;
 
 @Controller
@@ -16,12 +15,11 @@ public class UsuarioController {
 	
 	@Autowired
 	private IUsuarioRepository repoUsuario;
-	@Autowired
-	private ITipoUsuarioRepository repoTipoUsuario;
+
 	
 	/**************INICIO LOGIN****************/
 	
-	@GetMapping("/login/cargar")
+	@GetMapping("/")
 	public String cargarLogin(Model model) {
 		
 		//Mandamos atributo de tipo usuario
@@ -54,9 +52,7 @@ public class UsuarioController {
 		//Mandamos un atributo de usuario
 		model.addAttribute("usuario", new Usuario());
 		
-		//Mandamos un atributo con el listado de Tipos de Usuario para rellenar el combo del formulario
-		model.addAttribute("listadoTipoUsuarios", repoTipoUsuario.findAll());
-		
+
 		return "RegistroUsuario";
 	}
 	
@@ -76,14 +72,59 @@ public class UsuarioController {
 			
 			System.out.println(model);
 		}
-		
-		//Mandamos un atributo con el listado de Tipos de Usuario para rellenar el combo del formulario
-		model.addAttribute("listadoTipoUsuarios", repoTipoUsuario.findAll());
-		
+			
 		return "RegistroUsuario";
 		
 	}
 	
 	/*****************FIN REGISTRAR******************/
+	
+	/***************LISTADO DE USUARIOS**************/
+	
+	@GetMapping("/usuarios/listado")
+	public String ListadoUsuarios(Model model) {
+		
+		model.addAttribute("listadoUsuarios", repoUsuario.findAll());
+		
+		return "ListadoUsuarios";
+	}
+	
+	@PostMapping("/usuarios/editar")
+	public String editarUsuarios(Model model, @ModelAttribute Usuario usuario) {
+		
+		//
+		model.addAttribute("usuario", repoUsuario.findById(usuario.getCodigo()));
+		
+		return "MantUsuarios";
+	}
+	
+	@PostMapping("/usuarios/grabarEdit")
+	public String grabarEditUsuario(Model model,@ModelAttribute Usuario usuario) {
+		
+		try {
+			repoUsuario.save(usuario);
+			model.addAttribute("mensajeConfirmacion", "¡Registrado correctamente!");
+			
+			System.out.println(model);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("mensajeFallido", "Registro de manera incorrecta.");
+			
+			System.out.println(model);
+		}
+			
+		return "redirect:/usuarios/listado";
+		
+	}
+	
+	@PostMapping("/usuarios/eliminar")
+	public String eliminarUsuarios(Model model, @ModelAttribute Usuario usuario) {
+		
+		repoUsuario.deleteById(usuario.getCodigo());
+		
+		return "redirect:/usuarios/listado";
+	}
+	
 }
 

@@ -32,7 +32,5 @@ public class Usuario {
 	
 	@Column(name="dni_usu")
 	private String dni;
-	
-	@Column(name="codigo_tipo_usu")
-	private String codigoTipoUsuario;
+
 }

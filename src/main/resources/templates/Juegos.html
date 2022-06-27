@@ -9,6 +9,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
     />
+   <!--  <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet"> -->
     <link rel="stylesheet" th:href="@{/css/dataTables.bootstrap5.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <title>Home</title>
@@ -49,7 +50,7 @@
           <ul class="navbar-nav">
 
             <li>
-              <span class="text-light"> Piero Meza </span>
+              <a href="/" class="nav-link px-3 active">Cerrar Sesión</a>
             </li>
           </ul>
         </div>
@@ -75,7 +76,7 @@
                 <span class="me-2"><i class="bi bi-speedometer2"></i></span>
                 <span>Home</span>
               </a>
-              <a href="./juegos.html" class="nav-link px-3 active">
+              <a href="/juegos/cargar" class="nav-link px-3 active">
                 <span class="me-2"><i class="bi bi-joystick"></i></span>
                 <span>Juegos</span>
               </a>
@@ -83,9 +84,13 @@
                 <span class="me-2"><i class="bi bi-tags"></i></span>
                 <span>Categoria</span>
               </a>
-              <a href="./usuarios.html" class="nav-link px-3 active">
+              <a href="/usuarios/listado" class="nav-link px-3 active">
                 <span class="me-2"><i class="bi bi-people"></i></span>
                 <span>Usuarios</span>
+              </a>
+              <a href="/boleta/listado" class="nav-link px-3 active">
+                <span class="me-2"><i class="bi bi-people"></i></span>
+                <span>Boletas</span>
               </a>
             </li>
           </ul>
@@ -105,19 +110,35 @@
         <div class="row">
             <div class="col mb-5" th:each="jue:${listaVideoJuegos}">
                 <div class="card" style="width: 18rem;">
-                    <img th:src="@{'/images/juegos/' + ${jue.ruta_img_juego}}" class="card-img-top" alt="..." style="height: 180px">
+                    <img th:src="@{'/images/juegos/' + ${jue.ruta_img_juego}}"  class="card-img-top" alt="..." style="height: 180px">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${jue.nombre_juego}"></h5>
                         <p class="card-text" th:text="'Categoria: ' + ${jue.categoria.nombre_categoria}"></p>
                         <p class="card-text" th:text="'Tipo de Juego: ' +${jue.tipoJuego.nombre_tipo_juego}"></p>
                         <p class="card-text" th:text="'Precio: S/.' +${jue.precio_juego}"></p>
 
-                        <form action="/juegos/editar" method="post">
-							<input type="hidden" name="codigo_juego" th:value="${jue.codigo_juego}">
-							<button type="submit"class="btn btn-info">Editar</button>
-						</form>
-                        
-                        <a href="#" class="btn btn-danger ">Eliminar</a>
+                        <div class="forms2">
+					        <div class="row">
+					          <div class="col">
+					            <form action="/juegos/editar" method="post">
+					              <input type="hidden" name="codigo_juego" th:value="${jue.codigo_juego}">
+									<input type="hidden" name="ruta_img_juego" th:value="${jue.ruta_img_juego}">
+					              <button type="submit"class="btn btn-info">Editar</button>
+					            </form>
+					
+					          </div>
+					          <div class="col">
+					            <form action="/juegos/eliminar" method="post">
+					                <input type="hidden" name="codigo_juego" th:value="${jue.codigo_juego}">
+					                
+					                <button type="submit"class="btn btn-danger">Eliminar</button>
+					            </form>
+                                <!--<a th:onclick="eliminar([[${jue.codigo_juego}]])" class="btn btn-danger">Eliminar</a> -->					          
+							  </div>
+					
+					        </div>
+					
+					      </div>
                     </div>
                 </div>
             </div>
@@ -127,7 +148,7 @@
         <!-- Modal Agregar VideoJuego-->
         
         <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        	<div class="modal-dialog modal-xl">
+        	<div class="modal-dialog">
             	<div class="modal-content">
                 	<div class="modal-header">
                   		<h5 class="modal-title" id="">Agregar</h5>
@@ -136,14 +157,14 @@
              <div class="modal-body">
                 <div class="form">
                     <form action="/juegos/grabar" th:object="${videojuego}" method="post" enctype="multipart/form-data">
-                    	<div class="row">
-                      		<div class="col-md-6">
+                    	<div class="col">
+                      		
                         		<div class="mb-3">
                           			<label for="exampleInputEmail1" class="form-label">Nombre</label>
                           			<input type="text" class="form-control" id="" th:field="*{nombre_juego}">
                         		</div>
-                      		</div>
-	                      	<div class="col-md-6">
+                      		
+	                      	
 	                        	<div class="mb-3">
 	                          		<label for="select-category" class="form-label">Selecciona Categoria</label>
 	                          		<select class="input" th:field="*{codigo_categoria}">
@@ -155,8 +176,7 @@
 										</option>
 									</select>
 	                        	</div>
-	                      	</div>
-                      		<div class="col-md-6">
+	                      	
                         		<div class="mb-3">
                           			<label for="select-empresa" class="form-label">Selecciona la Empresa   </label>
                           			<select class="input" th:field="*{codigo_empresa}">
@@ -168,8 +188,8 @@
 										</option>
 									</select>
                        			</div>
-                      		</div>
-                      		<div class="col-md-6">
+                      		
+                      		
                         		<div class="mb-3">
                           			<label for="select-tipoJuego" class="form-label">Selecciona Categoria</label>
                           			<select class="input" th:field="*{codigo_tipo_juego}">
@@ -181,31 +201,31 @@
 										</option>
 									</select>
                         		</div>
-                      		</div>
-                      		<div class="col-md-6">
+                      		
+                      		
                         		<div class="mb-3">
                           			<label for="fecha" class="form-label">Fecha de Lanzamiento</label>
                           			<input type="date" class="form-control" id="" th:field="*{fecha_lanzamiento}" >
                         		</div>
-                      		</div>
-                      		<div class="col-md-6">
+                      		
+                      		
                         		<div class="mb-3">
                           			<label for="precio" class="form-label">Precio</label>
                           			<input type="text" class="form-control" id=""  th:field="*{precio_juego}">
                         		</div>
-                      		</div>
-                      		<div class="col-md-6">
+                      		
+                      		
                         		<div class="mb-3">
                           			<label for="Image" class="form-label">Inserta la imagen del juego</label>
                           			<input class="form-control" type="file" name="file" id="">
                         		</div>
-                      		</div>
-                      		<div class="col-md-12">
+                      		
+                      		
                         		<div class="mb-3">
                           			<label for="descripcion" class="form-label">Descripcion</label>
-                          			<textarea id="descripcion" name="w3review" rows="4" cols="50" th:field="*{descripcion_juego}"></textarea>
+                          			<textarea id="descripcion" name="" rows="4" cols="50" th:field="*{descripcion_juego}"></textarea>
                        		 	</div>
-                      		</div>
+                      		
                       		<div class="modal-footer">
                   				<button type="submit" class="btn btn-primary">Agregar</button>
                 			</div>
@@ -217,8 +237,32 @@
             </div>
           </div>
           <!-- FIN Modal Agregar VideoJuego-->
+          
+          <!-- Modal Delete -->
+	        <!-- <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDelete" aria-hidden="true">
+	            <div class="modal-dialog">
+	              <div class="modal-content">
+	                <div class="modal-body">
+	                    <span>¿Estás seguro que quieres eliminar?</span>
+	
+					</div>
+	                <div class="modal-footer">
+	                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Sí</button>
+	                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+	                </div>
+	              </div>
+	            </div>
+	          </div> -->
+	        <!--FIN Modal Delete -->
       </div>
     </main>
+    <!-- JQuery para el sweet Alert -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
+    <!-- Sweet Alert -->
+	<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script> -->
+    <!-- Funciones JS -->
+    <!-- <script src="../js/funciones.js"></script> -->
+    
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <script src="./js/jquery-3.5.1.js"></script>
