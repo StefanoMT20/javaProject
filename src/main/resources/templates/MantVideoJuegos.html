@@ -11,7 +11,7 @@
     />
     <link rel="stylesheet" th:href="@{/css/dataTables.bootstrap5.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-    <title>Home</title>
+    <title>CiberGames</title>
   </head>
   <body>
     <!-- top navigation bar -->
@@ -67,11 +67,11 @@
           <ul class="navbar-nav">
             <li>
               <div class="text-muted small fw-bold text-uppercase px-3">
-                CORE
+                SECCIONES
               </div>
             </li>
             <li>
-              <a href="home.html" class="nav-link px-3 active">
+              <a href="/home/cargar" class="nav-link px-3 active">
                 <span class="me-2"><i class="bi bi-speedometer2"></i></span>
                 <span>Home</span>
               </a>
@@ -79,7 +79,7 @@
                 <span class="me-2"><i class="bi bi-joystick"></i></span>
                 <span>Juegos</span>
               </a>
-              <a href="./categoria.html" class="nav-link px-3 active">
+              <a href="/categoria/listado" class="nav-link px-3 active">
                 <span class="me-2"><i class="bi bi-tags"></i></span>
                 <span>Categoria</span>
               </a>
@@ -125,7 +125,7 @@
                     <div class="col-md-6">
                     	<div class="mb-3">
                     		<label for="select-category" class="form-label">Selecciona Categoria</label>
-	                       	<select class="input" th:field="*{codigo_categoria}">
+	                       	<select class="input" th:field="*{codigoCategoria}">
 							<option value="-1">Seleccione</option>
 							<option 
 								th:each="cat: ${listaCategoria}" 

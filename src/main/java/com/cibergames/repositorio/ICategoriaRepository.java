@@ -9,5 +9,4 @@ import com.cibergames.model.Categoria;
 public interface ICategoriaRepository extends JpaRepository<Categoria, Integer> {
 	//CRUD
 	//...
-	
 }

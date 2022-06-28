@@ -1,5 +1,6 @@
 package com.cibergames.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,10 @@ public class VideoJuego {
 	private double precio_juego;
 	private String ruta_img_juego;
 	private String fecha_lanzamiento;
-	private int codigo_categoria;
+	
+	@Column(name="codigo_categoria")
+	private int codigoCategoria;
+	
 	private int codigo_tipo_juego;
 	private int codigo_empresa;
 	
