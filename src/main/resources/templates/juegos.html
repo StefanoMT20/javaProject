@@ -330,6 +330,27 @@
             </div>
           </div>
       </div>
+      
+      <div class="forms2">
+        <div class="row">
+          <div class="col">
+            <form action="/juegos/editar" method="post">
+              <input type="hidden" name="codigo_juego" th:value="${jue.codigo_juego}">
+              <button type="submit"class="btn btn-info">Editar</button>
+            </form>
+  
+          </div>
+          <div class="col">
+            <form action="/juegos/editar" method="post">
+                <input type="hidden" name="codigo_juego" th:value="${jue.codigo_juego}">
+                <button type="submit"class="btn btn-danger">Eliminar</button>
+            </form>
+          </div>
+
+        </div>
+  
+      </div>
+			
     </main>
     <script src="../static/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
