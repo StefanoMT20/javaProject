@@ -3,6 +3,7 @@ body,
 button {
   font-family: "Inter", sans-serif;
 }
+
 :root {
   --offcanvas-width: 270px;
   --topNavbarHeight: 56px;
@@ -39,6 +40,9 @@ button {
     top: var(--topNavbarHeight);
   }
 }
+.sidebar-nav{
+  margin-right: 0px;
+}
 .modal-add{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -48,16 +52,26 @@ button {
   height: 100%;
 }
 .container-home img{
-  height: 730px;
-  position: relative;
-  z-index: -1;
+
+ width: 80%;
+ height: 80%;
 }
+.main-home{
+  background-image: url('../images/37_SpiritShop_Signin-Modal_Dark.png');
+  background-repeat: no-repeat;
+  margin-left: -1px;
+}
+
 .container-home{
+  
   display: grid;
   place-items: center;
   grid-template-columns: 1fr 1fr;
   height: 100vh;
-  background-image: url('../images/wave\ \(2\).svg');
-  background-repeat: no-repeat;
-  background-position: bottom;
+}
+.container-home h1{
+  color: white;
+  place-self: start;
+  text-align: center;
+  margin-left: 200px;
 }
